@@ -6,8 +6,8 @@ const Header = () => {
       <Link href="/" aria-label="Home">
         NoteHub
       </Link>
-      <nav>
-        <ul className={css.navigation}>
+      <nav className={css.navigation}>
+        <ul className={css.list}>
           <li>
             <Link href="/">Home</Link>
           </li>
@@ -18,7 +18,6 @@ const Header = () => {
             <Link href="/profile">Profile</Link>
           </li>
           <li>
-            {' '}
             <Link href="/about">About</Link>
           </li>
         </ul>
