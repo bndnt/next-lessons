@@ -42,7 +42,7 @@ ul {
   padding: 0;
   margin: 0;
 }
-.errorBtn {
+.projectBtn {
   padding: 10px 15px;
   border: 1px solid black;
   background-color: white;
@@ -52,7 +52,31 @@ ul {
   text-decoration: none;
   color: white;
 }
-.errorBtn:hover {
+.projectBtn:hover {
   color: black;
   background-color: white;
+}
+.editBtn {
+  background-color: rgb(63, 160, 68);
+  border-color: rgb(63, 160, 68);
+}
+.editBtn:hover {
+  background-color: rgba(63, 160, 68, 0.489);
+  border-color: rgba(63, 160, 68, 0.489);
+}
+.cancelBtn {
+  background-color: rgb(182, 48, 48);
+  border-color: rgb(162, 45, 45);
+}
+.projectInput {
+  padding: 10px 15px;
+  border-radius: 0;
+  border: 1px solid black;
+  font-size: 16px;
+}
+.projectForm {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
 }

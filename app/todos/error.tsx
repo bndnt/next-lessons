@@ -9,7 +9,7 @@ function ErrorHandler({ error, reset }: ErrorHndler) {
     <div>
       <h3>Oops... Something went wrong🥲</h3>
       <p>{error.message}</p>
-      <button className="errorBtn" onClick={reset}>
+      <button className="projectBtn" onClick={reset}>
         Try again
       </button>
     </div>

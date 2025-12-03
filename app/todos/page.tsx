@@ -1,8 +1,10 @@
+import Link from 'next/link';
+
 import { getTodos } from '@/services/todos';
 
 async function Todos() {
   const todos = await getTodos();
-  console.log(todos);
+  //   console.log(todos);
 
   return (
     <div>
@@ -10,7 +12,9 @@ async function Todos() {
       <ul style={{ paddingInline: '43px', listStyle: 'disc' }}>
         {todos.map(todo => (
           <li key={todo.id}>
-            <p>{todo.title}</p>
+            <p>
+              <Link href={`/todos/${todo.id}`}>{todo.title}</Link>
+            </p>
           </li>
         ))}
       </ul>

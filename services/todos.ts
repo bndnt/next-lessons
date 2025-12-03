@@ -6,7 +6,7 @@ export async function getTodos() {
 
   //  return data.map(todo=>todo.id);
 }
-export async function get(todoId: Todo['id']) {
+export async function getTodo(todoId: Todo['id']) {
   const { data } = await axios.get<Todo>(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
   return data;
 }
