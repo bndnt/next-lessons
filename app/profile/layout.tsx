@@ -10,6 +10,9 @@ function ProfileLayout({ children }: ProfileLayoutProps) {
           <Link href="/profile/about">About</Link>
         </li>
         <li>
+          <Link href="/profile/edit">Edit</Link>
+        </li>
+        <li>
           <Link href="/profile/settings">Settings</Link>
         </li>
       </ul>
