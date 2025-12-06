@@ -1,8 +1,9 @@
 import Link from 'next/link';
 interface ProfileLayoutProps {
   children: React.ReactNode;
+  photos: React.ReactNode;
 }
-function ProfileLayout({ children }: ProfileLayoutProps) {
+function ProfileLayout({ children, photos }: ProfileLayoutProps) {
   return (
     <div>
       <ul>
@@ -17,6 +18,7 @@ function ProfileLayout({ children }: ProfileLayoutProps) {
         </li>
       </ul>
       <div>{children}</div>
+      <div>{photos}</div>
     </div>
   );
 }

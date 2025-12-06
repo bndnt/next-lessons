@@ -36,8 +36,9 @@ export default function RootLayout({
         <div id="modal-root"></div>
         <footer>
           <p>
-            Created<time dateTime="2025">2025</time>
+            Created in <time dateTime="2025"> 2025 by bndnt</time>
           </p>
+          <p>Supported by GoIt school</p>
         </footer>
       </body>
     </html>
