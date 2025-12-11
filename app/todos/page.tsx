@@ -10,7 +10,7 @@ async function Todos() {
     <div>
       <h1>ToDos</h1>
       <ul style={{ paddingInline: '43px', listStyle: 'disc' }}>
-        {todos.map(todo => (
+        {todos.slice(0, 5).map(todo => (
           <li key={todo.id}>
             <p>
               <Link href={`/todos/${todo.id}`}>{todo.title}</Link>

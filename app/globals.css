@@ -27,7 +27,8 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: var(--font-geist-sans);
 }
 main {
   padding: 0 15px 0;
