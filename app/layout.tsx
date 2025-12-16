@@ -41,10 +41,12 @@ export default function RootLayout({ children, preview }: RootLayoutProps) {
         </TanstackProvider>
         <div id="modal-root"></div>
         <footer>
-          <p>
-            Created in <time dateTime="2025"> 2025 by bndnt</time>
-          </p>
-          <p>Supported by GoIt school</p>
+          <div className="container">
+            <p>
+              Created in <time dateTime="2025"> 2025 by bndnt</time>
+            </p>
+            <p>Supported by GoIt school</p>
+          </div>
         </footer>
       </body>
     </html>
