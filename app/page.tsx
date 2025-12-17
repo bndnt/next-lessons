@@ -1,3 +1,4 @@
+//store only for clients
 import Image from 'next/image';
 
 const page = () => {
