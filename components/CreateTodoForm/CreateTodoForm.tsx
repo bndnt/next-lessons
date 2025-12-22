@@ -6,22 +6,35 @@ import { useMutation } from '@tanstack/react-query';
 import { createTodo } from '@/services/todos';
 import { useRouter } from 'next/navigation';
 import { useCounter } from '@/store/counter';
-
+//1
+import { useTodoDraft } from '@/store/todoDraft';
 const CreateTodoForm = () => {
   const router = useRouter();
+  //2
+  const { draft, cleanDraft, saveDraft } = useTodoDraft();
   //mutate - функція, яку будемо викликати при сабміті. isPending - для дизейблу кнопки після сабміту
   const { mutate, isPending } = useMutation({
     mutationFn: createTodo,
     onSuccess: () => {
+      //3
+      cleanDraft();
       router.push('/todos');
     },
   });
+  //send to server
   const handleSubmit = (formData: FormData) => {
     const title = formData.get('title') as string;
     // const values = Object.fromEntries(formData) as TodoPayload;
     mutate({ title });
   };
   const { value, increment, decrement } = useCounter();
+  //4
+  const handlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    saveDraft({ ...draft, [name]: value });
+  };
+  //   console.log({ draft });
 
   return (
     <>
@@ -44,7 +57,13 @@ const CreateTodoForm = () => {
       <Form action={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Title</Form.Label>
-          <Form.Control name="title" type="text" placeholder="Enter title" />
+          <Form.Control
+            value={draft.title}
+            onChange={handlChange}
+            name="title"
+            type="text"
+            placeholder="Enter title"
+          />
         </Form.Group>
 
         <Button disabled={isPending} variant="primary" type="submit">
