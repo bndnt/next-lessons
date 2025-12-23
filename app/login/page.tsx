@@ -7,14 +7,17 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import type { ApiError } from '@/types/api';
+import { useAuthStore } from '@/store/auth';
 
 function Login() {
+  const setUser = useAuthStore(store => store.setUser);
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
   const { mutate, isPending } = useMutation({
     mutationFn: login,
-    onSuccess: () => {
+    onSuccess: data => {
+      setUser(data);
       router.push('/profile');
     },
     onError: error => {

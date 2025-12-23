@@ -12,13 +12,18 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import type { ApiError } from '@/types/api';
+
+import { useAuthStore } from '@/store/auth';
 function Registration() {
+  const setUser = useAuthStore(store => store.setUser);
+
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   //6
   const { mutate, isPending } = useMutation({
     mutationFn: register,
-    onSuccess: () => {
+    onSuccess: data => {
+      setUser(data);
       router.push('/profile');
     },
     onError: error => {

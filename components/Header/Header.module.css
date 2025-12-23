@@ -10,7 +10,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  padding: 30px 40px;
+  padding: 9px 40px;
 }
 .navigation {
   width: 60%;
@@ -23,6 +23,8 @@
   list-style-type: none;
   text-align: center;
   width: 100%;
+  padding: 0;
+  margin: 0;
 }
 .list li {
   display: inline-block;

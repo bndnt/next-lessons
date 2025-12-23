@@ -4,7 +4,7 @@ import './globals.css';
 import Header from '@/components/Header/Header';
 import TanstackProvider from '@/components/TanstackProvider/TanstackProvider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -32,12 +32,14 @@ export default function RootLayout({ children, preview }: RootLayoutProps) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <TanstackProvider>
-          <Header />
-          <main>
-            <div> {preview}</div>
-            {children}
-          </main>
-          <ReactQueryDevtools />
+          <AuthProvider>
+            <Header />
+            <main>
+              <div> {preview}</div>
+              {children}
+            </main>
+            <ReactQueryDevtools />
+          </AuthProvider>
         </TanstackProvider>
         <div id="modal-root"></div>
         <footer>
