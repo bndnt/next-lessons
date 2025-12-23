@@ -1,25 +1,27 @@
-// import LoginForm from './Login.client';
 'use client';
-// 4-додаємо клієнтську частину
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// 5-Імпортуємо функцію запиту з сервісів
 import { login } from '@/services/auth';
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import type { ApiError } from '@/types/api';
+
 function Login() {
-  //6
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+
   const { mutate, isPending } = useMutation({
     mutationFn: login,
-    onSuccess: data => {
-      console.log(data);
+    onSuccess: () => {
+      router.push('/profile');
     },
     onError: error => {
-      console.error(error);
+      setError((error as ApiError).response?.data?.error ?? (error as ApiError).message);
     },
   });
 
-  // 3-Описуємо функцію
   const handleSubmit = (formData: FormData) => {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
@@ -30,8 +32,7 @@ function Login() {
   };
   return (
     <div className="container">
-      {/* 1-Створюємо форму та інпути */}
-      {/* 2-Підтягуємо на форму action та функцію */}
+      <p className="error">{error}</p>
       <Form action={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -45,7 +46,6 @@ function Login() {
           <Form.Label>Password</Form.Label>
           <Form.Control name="password" type="password" placeholder="Password" required />
         </Form.Group>
-        {/*7-added disabled*/}
 
         <Button variant="primary" type="submit" disabled={isPending}>
           Sign in
@@ -56,3 +56,60 @@ function Login() {
 }
 
 export default Login;
+
+/* 1-Створюємо форму та інпути */
+
+/* 2-Підтягуємо на форму action та функцію */
+
+// 3-Описуємо функцію
+// const handleSubmit = (formData: FormData) => {
+//   const email = formData.get('email') as string;
+//   const password = formData.get('password') as string;
+// };
+
+// 4-додаємо клієнтську частину
+//'use client';
+
+// 5-Імпортуємо функцію запиту з сервісів
+//import { login } from '@/services/auth';
+
+//6 - Мутації
+
+/*  const { mutate, isPending } = useMutation({
+    mutationFn: login,
+    onSuccess: data => {
+      console.log(data);
+    },
+    onError: error => {
+      console.error(error);
+    },
+  });*/
+
+// 7 - added disabled
+/*
+<Button variant="primary" type="submit" disabled={isPending}>
+  Sign in
+</Button>
+        */
+
+//8 - added mutate from mutations to handleSubmit
+//    mutate({ email, password });
+
+//9 -  const router = useRouter();
+
+//10 - State error
+//  const [error, setError] = useState<string | null>(null);
+
+//11
+/*
+onSuccess: () => {
+  router.push('/profile');
+},
+    */
+
+//12
+/*
+onError: error => {
+      setError((error as ApiError).response?.data?.error ?? (error as ApiError).message);
+    },
+*/

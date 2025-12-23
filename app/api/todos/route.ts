@@ -1,20 +1,19 @@
 //Цей файл створено для переносу запитів з сервісу
 // Тепер цей запит робиться на api/todos та буде робитися запит на їх отримання і створення
-import API from '../api';
-import type { Todo, TodoPayload } from '@/types/todo';
+// import API from '../api';
+import axios from 'axios';
 import { NextRequest, NextResponse } from 'next/server';
+import type { Todo, TodoPayload } from '@/types/todo';
 
 export async function GET() {
   //1- Замість await get -> await API
   //2 - Замість повного посилання - ('/todos'), бо в АПІ вже вказали базове посилання
-  const { data } = await API.get<Todo[]>('/todos');
-  console.log('HERE');
-
+  const { data } = await axios.get<Todo[]>('https://jsonplaceholder.typicode.com/todos');
   return NextResponse.json(data);
 }
 
 export async function POST(request: NextRequest) {
   const payload = (await request.json()) as TodoPayload;
-  const { data } = await API.post<Todo>('/todos', payload);
+  const { data } = await axios.post<Todo>('https://jsonplaceholder.typicode.com/todos', payload);
   return NextResponse.json(data);
 }

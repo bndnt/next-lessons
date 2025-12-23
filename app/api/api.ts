@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
+export type ApiError = AxiosError<{ error: string }>;
+
 // Створюємо інстанс аксіоса
-const API = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com',
+export const api = axios.create({
+  baseURL: 'https://next-v1-notes-api.goit.study',
 });
-export default API;

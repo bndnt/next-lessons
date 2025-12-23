@@ -85,3 +85,9 @@ ul {
 .container {
   padding: 0 15px;
 }
+.error {
+  color: rgb(200, 43, 43);
+  font-weight: 600;
+  font-size: larger;
+  text-transform: uppercase;
+}

@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import API from '../../api';
+// import API from '../../api';
 import type { Todo } from '@/types/todo';
+import axios from 'axios';
 interface TodoProp {
   params: Promise<{ id: string }>;
   // id - bc the folder name is [id]
@@ -10,6 +11,6 @@ interface TodoProp {
 
 export async function GET(request: NextRequest, { params }: TodoProp) {
   const { id } = await params;
-  const { data } = await API.get<Todo>(`/todos/${id}`);
+  const { data } = await axios.get<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`);
   return NextResponse.json(data);
 }

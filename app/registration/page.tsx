@@ -8,32 +8,39 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // 5-Імпортуємо функцію запиту з сервісів
 import { register } from '@/services/auth';
 import { useMutation } from '@tanstack/react-query';
-// import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+import type { ApiError } from '@/types/api';
 function Registration() {
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
   //6
   const { mutate, isPending } = useMutation({
     mutationFn: register,
-    onSuccess: data => {
-      console.log(data);
+    onSuccess: () => {
+      router.push('/profile');
     },
     onError: error => {
-      console.error(error);
+      setError((error as ApiError).response?.data?.error ?? (error as ApiError).message);
     },
   });
   // 3-Описуємо функцію та виводимо у консоль дані для перевірки (на початку)
   const handleSubmit = (formData: FormData) => {
-    const name = formData.get('name') as string;
+    const userName = formData.get('name') as string;
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     {
       /*8 - added mutate from mutations*/
     }
-    mutate({ name, email, password });
+    mutate({ userName, email, password });
   };
   return (
     <div className="container">
       {/* 1-Створюємо форму та інпути */}
       {/* 2-Підтягуємо на форму action та функцію */}
+
+      <h2>{error}</h2>
       <Form action={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
