@@ -24,19 +24,28 @@ const Header = () => {
           <li>
             <Link href="/">Home</Link>
           </li>
-          <li>
-            <Link href="/profile">Profile</Link>
-          </li>
+
           <li>
             <Link href="/todos">Todos</Link>
           </li>
           {isAuthenticated ? (
-            <li>
-              <p>{user?.email}</p>
-              <button className="projectBtn" onClick={handleLogout}>
-                Log Out
-              </button>
-            </li>
+            <>
+              <li>
+                <Link href="/profile">Profile</Link>
+              </li>
+              <li>
+                <p style={{ margin: 0 }}>{user?.email}</p>
+              </li>
+              <li>
+                <button
+                  style={{ whiteSpace: 'nowrap' }}
+                  className="projectBtn"
+                  onClick={handleLogout}
+                >
+                  Log Out
+                </button>
+              </li>
+            </>
           ) : (
             <>
               <li>
